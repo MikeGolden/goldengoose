@@ -145,12 +145,6 @@ export const site = {
       icon: 'mail',
     },
     {
-      label: 'Telegram',
-      handle: '@YOUR-HANDLE',
-      href: 'https://t.me/YOUR-HANDLE',
-      icon: 'telegram',
-    },
-    {
       label: 'CV',
       handle: 'PDF · updated 2026',
       href: '/cv.pdf', // TODO: drop your CV at public/cv.pdf
