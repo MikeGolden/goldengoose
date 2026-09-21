@@ -1,0 +1,25 @@
+---
+import Icon from './Icon.astro';
+import type { ProjectLink } from '../data/site';
+
+interface Props {
+  project: ProjectLink;
+}
+const { project } = Astro.props;
+const external = project.href.startsWith('http');
+---
+<a
+  class="card"
+  href={project.href}
+  target={external ? '_blank' : undefined}
+  rel={external ? 'noopener noreferrer' : undefined}
+>
+  <img class="card__thumb" src={project.image} alt={project.imageAlt} loading="lazy" decoding="async" width="304" height="190" />
+  <div class="card__body">
+    <div class="card__head">
+      <h3 class="card__title">{project.title}<Icon name="arrow" /></h3>
+      <span class="card__year">{project.year}</span>
+    </div>
+    <p class="card__desc">{project.description}</p>
+  </div>
+</a>

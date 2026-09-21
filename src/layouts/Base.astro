@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = `${site.name} — ${site.role}`, description = site.description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).toString();
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  jobTitle: site.role,
+  email: `mailto:${site.email}`,
+  url: site.url,
+  address: { '@type': 'PostalAddress', addressLocality: site.location },
+  sameAs: site.links.filter((l) => l.href.startsWith('http')).map((l) => l.href),
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#09090a" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  </head>
+  <body>
+    <div class="glow" aria-hidden="true"></div>
+
+    <header class="topbar" id="topbar">
+      <div class="shell topbar__inner">
+        <a class="topbar__mark" href="#top">{site.name}<span>.</span></a>
+        <nav class="topbar__nav" aria-label="Sections">
+          {site.nav.map((item) => <a href={item.href}>{item.label}</a>)}
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <slot />
+    </main>
+
+    <footer>
+      <div class="shell" style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;width:100%">
+        <span>© {new Date().getFullYear()} {site.name}</span>
+        <span>{site.location}</span>
+      </div>
+    </footer>
+
+    <script is:inline>
+      const bar = document.getElementById('topbar');
+      const onScroll = () => bar.dataset.scrolled = String(window.scrollY > 8);
+      onScroll();
+      addEventListener('scroll', onScroll, { passive: true });
+    </script>
+  </body>
+</html>

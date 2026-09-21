@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import LinkCard from '../components/LinkCard.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+
+const cv = site.links.find((l) => l.icon === 'file');
+---
+<Base>
+  <section class="hero">
+    <div class="shell">
+      <img class="hero__avatar" src={site.avatar} alt={site.name} width="68" height="68" />
+      <h1>{site.name}</h1>
+      <p class="hero__role"><strong>{site.role}</strong> — {site.tagline}</p>
+
+      <div class="hero__meta">
+        <span>{site.location}</span>
+        {site.availability && (
+          <span><i class="dot" aria-hidden="true"></i>{site.availability}</span>
+        )}
+      </div>
+
+      <div class="hero__cta">
+        <a class="btn btn--primary" href={`mailto:${site.email}`}>
+          <Icon name="mail" />Get in touch
+        </a>
+        {cv && (
+          <a class="btn" href={cv.href}>
+            <Icon name="download" />Download CV
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <Section id="about" label="About">
+    <div class="prose">
+      {site.about.map((p) => <p>{p}</p>)}
+    </div>
+  </Section>
+
+  <Section id="stack" label="Stack">
+    <div class="stack-grid">
+      {site.stack.map((row) => (
+        <div class="stack-row">
+          <div class="stack-row__key">{row.key}</div>
+          <div class="tags">
+            {row.items.map((item) => <span class="tag">{item}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section id="work" label="Selected work">
+    <div class="projects">
+      {site.projects.map((project) => <ProjectCard project={project} />)}
+    </div>
+  </Section>
+
+  <Section id="links" label="Elsewhere">
+    <div class="links">
+      {site.links.map((link) => <LinkCard link={link} />)}
+    </div>
+  </Section>
+</Base>
