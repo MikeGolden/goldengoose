@@ -126,7 +126,7 @@ export const site = {
       title: 'PROJECT TWO',
       description:
         'What it does, who uses it, what it replaced. Keep it under two lines.',
-      href: 'https://github.com/YOUR-HANDLE/project-two',
+      href: 'https://github.com/MikeGolden/project-two',
       year: '2025',
       image: '/img/project-2.svg',
       imageAlt: 'Screenshot of PROJECT TWO',
@@ -135,7 +135,7 @@ export const site = {
       title: 'PROJECT THREE',
       description:
         'The scrappy one. Say what broke and how you fixed it.',
-      href: 'https://github.com/YOUR-HANDLE/project-three',
+      href: 'https://github.com/MikeGolden/project-three',
       year: '2025',
       image: '/img/project-3.svg',
       imageAlt: 'Screenshot of PROJECT THREE',
@@ -146,8 +146,8 @@ export const site = {
   links: [
     {
       label: 'GitHub',
-      handle: '@YOUR-HANDLE',
-      href: 'https://github.com/YOUR-HANDLE',
+      handle: '@MikeGolden',
+      href: 'https://github.com/MikeGolden',
       icon: 'github',
     },
     {
