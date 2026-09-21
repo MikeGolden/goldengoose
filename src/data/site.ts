@@ -22,35 +22,93 @@ export interface ProfileLink {
   icon: 'github' | 'linkedin' | 'mail' | 'telegram' | 'file';
 }
 
+export interface Role {
+  title: string;
+  org: string;
+  period: string;
+  place: string;
+  points: string[];
+}
+
 export const site = {
   /* ── identity ─────────────────────────────────────────────── */
-  name: 'Mykhailo',                       // TODO: add your surname
-  initials: 'M',
-  role: 'Backend engineer',
-  tagline: 'I build the parts of systems nobody sees and everybody depends on.',
+  name: 'Mykhailo Goldenberg',
+  initials: 'MG',
+  role: 'Senior software engineer',
+  tagline: 'Python backends, React on top, a decade of both in production.',
   location: 'Füssen, Germany',
-  availability: 'Open to backend roles',  // set to '' to hide the green dot
+  availability: 'Open to senior backend roles in Europe',
   avatar: '/img/avatar.svg',              // TODO: drop a real photo in public/img/ and point here
   email: 'msg0687@gmail.com',
 
   /* ── SEO ──────────────────────────────────────────────────── */
   url: 'https://example.com',             // TODO: your domain, must match astro.config.mjs
   description:
-    'Mykhailo — backend engineer based in Füssen, Germany. Services, APIs, data pipelines.',
+    'Mykhailo Goldenberg — senior software engineer in Füssen, Germany. Python, FastAPI, React, PostgreSQL.',
 
   /* ── about: 2–3 short paragraphs, concrete over polished ──── */
   about: [
-    'Backend engineer with mid/senior experience: services, APIs, databases, and the unglamorous glue that keeps them running in production.',
-    'Currently running the day-to-day at a bike rental station in Füssen — scheduling, fleet, customers — which turned out to be a better lesson in systems under load than most of my code reviews.',
-    'Russian and English daily, German up to B2. Based in Bavaria, working on things that ship.',
+    'Ten years of backend Python, most of it at CloudLinux: a customer self-service portal on APIs serving ~500k requests a day, a cluster-monitoring platform with hundreds of tunable metrics, and the Python 2→3 migration of a large production codebase that shipped without a functional regression.',
+    'Now senior engineer at id4web in Füssen — FastAPI, React and PostgreSQL for business clients, end to end: requirements, architecture, tests, deploy. I lead the dev team and own the client conversation on three accounts.',
+    'In between I ran a 200+ asset rental fleet for two seasons: ~€350k revenue, 85% availability, purchasing and pricing driven off utilisation data. Best education in systems under load I have had, and the reason I reach for numbers before opinions.',
   ],
+
+  /* ── experience ───────────────────────────────────────────── */
+  experience: [
+    {
+      title: 'Senior Software Engineer',
+      org: 'id4web',
+      period: 'Oct 2025 — now',
+      place: 'Füssen · hybrid',
+      points: [
+        'Full-stack delivery for business clients in Python/FastAPI, React and PostgreSQL — owning features from requirements through architecture, tests and deployment.',
+        'Lead the development team and run client communication on three accounts.',
+      ],
+    },
+    {
+      title: 'Operations & Technical Manager',
+      org: 'Bike Füssen',
+      period: 'Feb 2024 — Oct 2025',
+      place: 'Füssen · on-site',
+      points: [
+        '200+ asset rental fleet, ~€350k seasonal revenue, 85% availability sustained through capacity planning and preventive maintenance.',
+        'Purchasing, pricing and resource allocation decided on utilisation and seasonality data; reporting to the owner.',
+      ],
+    },
+    {
+      title: 'Senior Backend Developer',
+      org: 'CloudLinux',
+      period: 'Sep 2016 — Sep 2023',
+      place: 'Kyiv · remote',
+      points: [
+        'Built a client self-service portal with subscription monitoring for ~30 customers; platform APIs served ~500k requests/day.',
+        'Co-built a cluster-monitoring platform for the whole server fleet: hundreds of customisable metrics, alerting and visualisation.',
+        'Led the Python 2→3 migration of a large production codebase — dependency analysis, refactoring, release management, no functional regressions.',
+        'Cut deployment time 40% with custom Bash automation; added OAuth 2.0 and role-based access control across the API surface; provisioning with Ansible.',
+      ],
+    },
+    {
+      title: 'Software Developer',
+      org: 'CloudLinux',
+      period: 'Mar 2013 — Aug 2016',
+      place: 'Kyiv · remote',
+      points: [
+        'Intern to mid-level in three years, starting with authentication and role-based access control.',
+        'Designed a modular Flask REST API with versioning and request/response validation; Flask-SQLAlchemy; deployment tooling in Bash.',
+      ],
+    },
+  ] satisfies Role[],
+
+  education: 'MSc, Informatics and Computer Engineering — Igor Sikorsky Kyiv Polytechnic Institute, 2004–2009',
 
   /* ── stack ────────────────────────────────────────────────── */
   stack: [
-    { key: 'Languages', items: ['LANGUAGE 1', 'LANGUAGE 2', 'SQL', 'Bash'] },
-    { key: 'Backend',   items: ['FRAMEWORK 1', 'REST', 'gRPC', 'Queues'] },
-    { key: 'Data',      items: ['PostgreSQL', 'Redis', 'DATABASE 3'] },
-    { key: 'Infra',     items: ['Docker', 'CI/CD', 'Linux', 'CLOUD PROVIDER'] },
+    { key: 'Languages', items: ['Python', 'JavaScript', 'SQL', 'Bash'] },
+    { key: 'Backend', items: ['FastAPI', 'Flask', 'SQLAlchemy', 'REST', 'OAuth 2.0'] },
+    { key: 'Data', items: ['PostgreSQL', 'Caching at scale', 'Monitoring & alerting'] },
+    { key: 'Frontend', items: ['React', 'Astro'] },
+    { key: 'Infra', items: ['Linux', 'Ansible', 'Docker', 'CI/CD'] },
+    { key: 'Spoken', items: ['Ukrainian', 'Russian', 'English', 'German (B1)'] },
   ],
 
   /* ── projects ─────────────────────────────────────────────── */
@@ -94,8 +152,8 @@ export const site = {
     },
     {
       label: 'LinkedIn',
-      handle: '/in/YOUR-HANDLE',
-      href: 'https://www.linkedin.com/in/YOUR-HANDLE',
+      handle: '/in/mykhailo-goldenberg',
+      href: 'https://www.linkedin.com/in/mykhailo-goldenberg',
       icon: 'linkedin',
     },
     {
@@ -121,6 +179,7 @@ export const site = {
   /* ── nav anchors ──────────────────────────────────────────── */
   nav: [
     { label: 'about', href: '#about' },
+    { label: 'experience', href: '#experience' },
     { label: 'stack', href: '#stack' },
     { label: 'work', href: '#work' },
     { label: 'links', href: '#links' },
@@ -128,7 +187,8 @@ export const site = {
 } satisfies {
   name: string; initials: string; role: string; tagline: string; location: string;
   availability: string; avatar: string; email: string; url: string; description: string;
-  about: string[]; stack: { key: string; items: string[] }[];
+  about: string[]; experience: Role[]; education: string;
+  stack: { key: string; items: string[] }[];
   projects: ProjectLink[]; links: ProfileLink[];
   nav: { label: string; href: string }[];
 };

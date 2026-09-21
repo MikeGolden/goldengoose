@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import Section from '../components/Section.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import LinkCard from '../components/LinkCard.astro';
+import RoleEntry from '../components/RoleEntry.astro';
 import Icon from '../components/Icon.astro';
 import { site } from '../data/site';
 
@@ -39,6 +40,13 @@ const cv = site.links.find((l) => l.icon === 'file');
     <div class="prose">
       {site.about.map((p) => <p>{p}</p>)}
     </div>
+  </Section>
+
+  <Section id="experience" label="Experience">
+    <ol class="timeline">
+      {site.experience.map((role) => <RoleEntry role={role} />)}
+    </ol>
+    <p class="education">{site.education}</p>
   </Section>
 
   <Section id="stack" label="Stack">

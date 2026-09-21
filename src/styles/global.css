@@ -269,6 +269,88 @@ section + section { border-top: 1px solid var(--line); }
   background: var(--bg-elev);
 }
 
+/* ── experience ─────────────────────────────────────────────────────── */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.75rem;
+}
+
+.role__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.role__title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.role__org {
+  color: var(--accent);
+  font-weight: 500;
+}
+.role__org::before {
+  content: " · ";
+  color: var(--fg-dim);
+  font-weight: 400;
+}
+
+.role__period {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--fg-dim);
+  white-space: nowrap;
+}
+
+.role__place {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  color: var(--fg-dim);
+  margin-top: 0.1875rem;
+}
+
+.role__points {
+  margin: 0.625rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--fg-muted);
+}
+.role__points li {
+  position: relative;
+  padding-left: 1rem;
+}
+.role__points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6875em;
+  width: 5px;
+  height: 1px;
+  background: var(--line-strong);
+}
+
+.education {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8125rem;
+  color: var(--fg-dim);
+}
+
+@media (max-width: 34rem) {
+  .role__head { flex-direction: column; gap: 0.25rem; }
+  .role__title { font-size: 0.9375rem; }
+}
+
 /* ── projects ───────────────────────────────────────────────────────── */
 .projects { display: grid; gap: 0.875rem; }
 

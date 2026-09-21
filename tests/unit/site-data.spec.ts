@@ -22,6 +22,27 @@ test('about has 2–4 paragraphs and no lorem', () => {
   }
 });
 
+test('experience entries are complete and ordered newest first', () => {
+  expect(site.experience.length).toBeGreaterThan(0);
+
+  for (const role of site.experience) {
+    expect(role.title, 'role title').not.toBe('');
+    expect(role.org, `${role.title}: org`).not.toBe('');
+    expect(role.place, `${role.title}: place`).not.toBe('');
+    expect(role.period, `${role.title}: period`).toMatch(/^[A-Z][a-z]{2} \d{4} — (now|[A-Z][a-z]{2} \d{4})$/);
+    expect(role.points.length, `${role.title}: points`).toBeGreaterThan(0);
+    for (const point of role.points) {
+      expect(point.length, `${role.title}: point too short`).toBeGreaterThan(30);
+    }
+  }
+
+  const startYear = (role: (typeof site.experience)[number]) => Number(role.period.slice(4, 8));
+  const years = site.experience.map(startYear);
+  expect([...years].sort((a, b) => b - a), 'roles must run newest → oldest').toEqual(years);
+
+  expect(site.education).not.toBe('');
+});
+
 test('stack rows are non-empty', () => {
   expect(site.stack.length).toBeGreaterThan(0);
   for (const row of site.stack) {
