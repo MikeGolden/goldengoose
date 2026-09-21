@@ -61,7 +61,7 @@ export const site = {
         'Bilingual DE/RU site for a laser hair removal studio in Kempten: treatment catalogue by body area, booking enquiry flow, map and WhatsApp contact.',
       href: 'https://elcorix.de',
       year: '2026',
-      image: '/img/elcorix.svg', // TODO: swap for a real 16:10 screenshot
+      image: '/img/elcorix.png',
       imageAlt: 'elcorix.de — laser hair removal studio site',
     },
     {
