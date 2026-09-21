@@ -56,13 +56,13 @@ export const site = {
   /* ── projects ─────────────────────────────────────────────── */
   projects: [
     {
-      title: 'PROJECT ONE',
+      title: 'elcorix.de',
       description:
-        'One sentence on what it does and one on what was hard about it. No adjectives — numbers if you have them.',
-      href: 'https://github.com/YOUR-HANDLE/project-one',
+        'Bilingual DE/RU site for a laser hair removal studio in Kempten: treatment catalogue by body area, booking enquiry flow, map and WhatsApp contact.',
+      href: 'https://elcorix.de',
       year: '2026',
-      image: '/img/project-1.svg',
-      imageAlt: 'Screenshot of PROJECT ONE',
+      image: '/img/elcorix.svg', // TODO: swap for a real 16:10 screenshot
+      imageAlt: 'elcorix.de — laser hair removal studio site',
     },
     {
       title: 'PROJECT TWO',
