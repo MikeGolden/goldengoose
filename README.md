@@ -64,6 +64,13 @@ assertions follow it — no fixture to update.
 `BASE_URL=https://your-domain npm test` runs the same suite against a deployed site instead
 of a local build.
 
+On a network that blocks `cdn.playwright.dev` (so `playwright install` cannot run), point the
+suite at a Chromium that is already on the machine:
+
+```bash
+PLAYWRIGHT_CHROMIUM_PATH=/path/to/chrome npm test
+```
+
 ## Docker
 
 Three compose files, one Dockerfile per role.
