@@ -1,17 +1,17 @@
 # syntax=docker/dockerfile:1
 
 # ── build ───────────────────────────────────────────────────────────────
-FROM node:22-alpine AS build
+FROM oven/bun:1-alpine AS build
 WORKDIR /app
 ENV CI=1
 
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile --production
 
 COPY astro.config.mjs tsconfig.json ./
 COPY src ./src
 COPY public ./public
-RUN npm run build
+RUN bun run build
 
 # ── runtime: Caddy serving static files, automatic HTTPS ────────────────
 FROM caddy:2-alpine AS runtime

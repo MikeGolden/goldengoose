@@ -48,7 +48,7 @@ export default defineConfig({
   webServer: external
     ? undefined
     : {
-        command: 'npm run build && npm run serve:dist',
+        command: 'bun run build && bun run serve:dist',
         url: 'http://127.0.0.1:4321',
         reuseExistingServer: !process.env.CI,
         timeout: 120_000,

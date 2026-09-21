@@ -9,6 +9,8 @@ services:
       SITE_ADDRESS: ":80"
 
   e2e:
+    # the official Playwright image ships Node and the matching browsers, not bun,
+    # so this one container installs with npm — no package-lock.json in the repo
     image: mcr.microsoft.com/playwright:v1.63.0-noble
     depends_on:
       site:
@@ -20,4 +22,4 @@ services:
     volumes:
       - .:/work
     command: >
-      sh -c "npm ci && npx playwright test"
+      sh -c "npm install --no-audit --no-fund && npx playwright test"

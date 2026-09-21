@@ -1,14 +1,18 @@
 # goldengoose
 
-Personal landing page — Astro, static output, dark theme, no runtime JS beyond a 4-line scroll listener.
+Personal landing page — Astro on bun, static output, dark theme, no runtime JS beyond a
+4-line scroll listener.
 
 ## Run
 
+Needs [bun](https://bun.sh) (`curl -fsSL https://bun.sh/install | bash`). `bun.lock` is the
+only lockfile; there is no `package-lock.json`.
+
 ```bash
-npm install
-npm run dev      # http://localhost:4321
-npm run build    # → dist/
-npm run preview
+bun install
+bun run dev      # http://localhost:4321
+bun run build    # → dist/
+bun run preview
 ```
 
 ## Editing
@@ -43,10 +47,10 @@ one mono face for labels. Changing the accent recolors the whole page.
 Playwright, three projects: `data` (no browser), `chromium`, `mobile` (Pixel 5). 73 tests.
 
 ```bash
-npx playwright install chromium   # once
-npm test                          # builds, serves dist/, runs everything
-npm run test:ui                   # watch mode
-npm run test:report               # last HTML report
+bunx playwright install chromium   # once
+bun run test                       # builds, serves dist/, runs everything
+bun run test:ui                    # watch mode
+bun run test:report                # last HTML report
 ```
 
 | File | Covers |
@@ -61,14 +65,14 @@ npm run test:report               # last HTML report
 Tests read `src/data/site.ts` directly, so when you replace the placeholder content the
 assertions follow it — no fixture to update.
 
-`BASE_URL=https://your-domain npm test` runs the same suite against a deployed site instead
+`BASE_URL=https://your-domain bun run test` runs the same suite against a deployed site instead
 of a local build.
 
 On a network that blocks `cdn.playwright.dev` (so `playwright install` cannot run), point the
 suite at a Chromium that is already on the machine:
 
 ```bash
-PLAYWRIGHT_CHROMIUM_PATH=/path/to/chrome npm test
+PLAYWRIGHT_CHROMIUM_PATH=/path/to/chrome bun run test
 ```
 
 ## Docker
@@ -76,20 +80,24 @@ PLAYWRIGHT_CHROMIUM_PATH=/path/to/chrome npm test
 Three compose files, one Dockerfile per role.
 
 ```bash
-npm run docker:dev    # dev server + hot reload → http://localhost:4321
-npm run test:docker   # prod image + Playwright container, exits with the test status
-npm run prod:up       # production, detached
-npm run prod:logs
-npm run prod:down
+bun run docker:dev    # dev server + hot reload → http://localhost:4321
+bun run test:docker   # prod image + Playwright container, exits with the test status
+bun run prod:up       # production, detached
+bun run prod:logs
+bun run prod:down
 ```
 
-**Production** (`Dockerfile` → `docker-compose.prod.yml`): Node builds the site, then the
-output is copied into `caddy:2-alpine`. The final image carries no Node, no `node_modules`,
-no source — just Caddy and `dist/`.
+**Production** (`Dockerfile` → `docker-compose.prod.yml`): `oven/bun:1-alpine` builds the
+site, then the output is copied into `caddy:2-alpine`. The final image carries no bun, no
+`node_modules`, no source — just Caddy and `dist/`.
+
+The one exception to bun: the `e2e` service in `docker-compose.test.yml` runs the official
+Playwright image, which ships Node and the matching browsers. It installs with
+`npm install` there.
 
 ```bash
 cp .env.example .env     # DOMAIN + ACME_EMAIL
-npm run prod:up
+bun run prod:up
 ```
 
 Caddy handles TLS itself: it requests a Let's Encrypt certificate for `DOMAIN` on first
@@ -109,4 +117,4 @@ Also in `Caddyfile`: HSTS, CSP, `X-Frame-Options`, `X-Content-Type-Options`, `Re
 Static output, so any host works:
 
 - **GitHub Pages** — push, then Settings → Pages → build from GitHub Actions (Astro's `withastro/action`)
-- **Netlify / Vercel / Cloudflare Pages** — connect the repo, build `npm run build`, publish `dist`
+- **Netlify / Vercel / Cloudflare Pages** — connect the repo, build `bun run build`, publish `dist`
