@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { site } from '../data/site';
+import { withBase } from '../lib/paths';
 
 interface Props {
   title?: string;
@@ -30,7 +31,7 @@ const personSchema = {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#09090a" />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />

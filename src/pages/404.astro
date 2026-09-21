@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
+import { withBase } from '../lib/paths';
 ---
 <Base title={`404 — ${site.name}`} description="Page not found.">
   <section class="hero">
@@ -8,7 +9,7 @@ import { site } from '../data/site';
       <h1>404</h1>
       <p class="hero__role">That page doesn't exist — or it did, and I moved it.</p>
       <div class="hero__cta">
-        <a class="btn btn--primary" href="/">Back to the start</a>
+        <a class="btn btn--primary" href={withBase('/')}>Back to the start</a>
       </div>
     </div>
   </section>

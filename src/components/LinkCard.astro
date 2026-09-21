@@ -1,16 +1,18 @@
 ---
 import Icon from './Icon.astro';
 import type { ProfileLink } from '../data/site';
+import { withBase } from '../lib/paths';
 
 interface Props {
   link: ProfileLink;
 }
 const { link } = Astro.props;
 const external = link.href.startsWith('http');
+const href = external || link.href.startsWith('mailto:') ? link.href : withBase(link.href);
 ---
 <a
   class="link"
-  href={link.href}
+  href={href}
   target={external ? '_blank' : undefined}
   rel={external ? 'noopener noreferrer' : undefined}
 >

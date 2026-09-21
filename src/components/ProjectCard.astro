@@ -1,20 +1,22 @@
 ---
 import Icon from './Icon.astro';
 import type { ProjectLink } from '../data/site';
+import { withBase } from '../lib/paths';
 
 interface Props {
   project: ProjectLink;
 }
 const { project } = Astro.props;
 const external = project.href.startsWith('http');
+const href = external ? project.href : withBase(project.href);
 ---
 <a
   class="card"
-  href={project.href}
+  href={href}
   target={external ? '_blank' : undefined}
   rel={external ? 'noopener noreferrer' : undefined}
 >
-  <img class="card__thumb" src={project.image} alt={project.imageAlt} loading="lazy" decoding="async" width="304" height="190" />
+  <img class="card__thumb" src={withBase(project.image)} alt={project.imageAlt} loading="lazy" decoding="async" width="304" height="190" />
   <div class="card__body">
     <div class="card__head">
       <h3 class="card__title">{project.title}<Icon name="arrow" /></h3>
