@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { site } from '../../src/data/site';
 
-// the nav bar is desktop-only by design
-test.use({ viewport: { width: 1280, height: 800 } });
+// the nav bar is desktop-only by design.
+// reducedMotion makes the CSS smooth-scroll instant (see global.css), so anchor
+// jumps land deterministically instead of racing the animation.
+test.use({ viewport: { width: 1280, height: 800 }, reducedMotion: 'reduce' });
 
 test.beforeEach(async ({ page }) => {
   await page.goto('/');

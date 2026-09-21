@@ -1,7 +1,12 @@
 # goldengoose
 
-Personal landing page — Astro on bun, static output, dark theme, no runtime JS beyond a
-4-line scroll listener.
+Personal landing page for [Mykhailo Goldenberg](https://www.linkedin.com/in/mykhailo-goldenberg)
+— Astro on bun, static output, dark theme, no runtime JS beyond a 4-line scroll listener.
+Served in production by Caddy with automatic HTTPS; 78 Playwright tests cover content,
+accessibility, SEO and layout.
+
+All content lives in one file (`src/data/site.ts`), so the page is worth forking if you want
+the same structure with your own data. MIT licensed.
 
 ## Run
 
@@ -111,6 +116,10 @@ or in CI.
 Also in `Caddyfile`: HSTS, CSP, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`,
 `Permissions-Policy`, zstd/gzip, immutable caching for `/_astro/*`, revalidate for HTML, and
 `404.html` served with a real 404 status.
+
+## License
+
+MIT — see `LICENSE`.
 
 ## Deploy
 

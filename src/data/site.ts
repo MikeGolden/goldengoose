@@ -38,7 +38,7 @@ export const site = {
   tagline: 'Python backends, React on top, a decade of both in production.',
   location: 'Füssen, Germany',
   availability: 'Open to senior backend roles in Europe',
-  avatar: '/img/avatar.svg',              // TODO: drop a real photo in public/img/ and point here
+  avatar: '/img/avatar.jpg',
   email: 'msg0687@gmail.com',
 
   /* ── SEO ──────────────────────────────────────────────────── */
@@ -121,24 +121,6 @@ export const site = {
       year: '2026',
       image: '/img/elcorix.png',
       imageAlt: 'elcorix.de — laser hair removal studio site',
-    },
-    {
-      title: 'PROJECT TWO',
-      description:
-        'What it does, who uses it, what it replaced. Keep it under two lines.',
-      href: 'https://github.com/MikeGolden/project-two',
-      year: '2025',
-      image: '/img/project-2.svg',
-      imageAlt: 'Screenshot of PROJECT TWO',
-    },
-    {
-      title: 'PROJECT THREE',
-      description:
-        'The scrappy one. Say what broke and how you fixed it.',
-      href: 'https://github.com/MikeGolden/project-three',
-      year: '2025',
-      image: '/img/project-3.svg',
-      imageAlt: 'Screenshot of PROJECT THREE',
     },
   ],
 

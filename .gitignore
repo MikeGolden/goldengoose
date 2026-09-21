@@ -11,3 +11,6 @@ test-results/
 playwright-report/
 blob-report/
 playwright/.cache/
+
+# npm is not used here — bun.lock is the lockfile
+package-lock.json
