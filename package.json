@@ -7,9 +7,22 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report",
+    "test:docker": "docker compose -f docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from e2e",
+    "docker:dev": "docker compose up --build",
+    "prod:up": "docker compose -f docker-compose.prod.yml up -d --build",
+    "prod:down": "docker compose -f docker-compose.prod.yml down",
+    "prod:logs": "docker compose -f docker-compose.prod.yml logs -f",
+    "serve:dist": "node scripts/serve.mjs"
   },
   "dependencies": {
     "astro": "^7.3.3"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0"
   }
 }

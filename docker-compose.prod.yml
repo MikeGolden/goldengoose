@@ -1,0 +1,26 @@
+# Production: static build served by Caddy with automatic Let's Encrypt certs.
+#   cp .env.example .env && edit it, then: docker compose -f docker-compose.prod.yml up -d --build
+services:
+  web:
+    build:
+      context: .
+      target: runtime
+    image: goldengoose:latest
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"   # HTTP/3
+    environment:
+      SITE_ADDRESS: ${DOMAIN:?set DOMAIN in .env}
+      ACME_EMAIL: ${ACME_EMAIL:?set ACME_EMAIL in .env}
+    volumes:
+      - caddy_data:/data      # certificates + ACME account — do not lose this
+      - caddy_config:/config
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+volumes:
+  caddy_data:
+  caddy_config:

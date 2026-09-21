@@ -1,0 +1,23 @@
+# End-to-end run against the real production image:
+#   docker compose -f docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from e2e
+services:
+  site:
+    build:
+      context: .
+      target: runtime
+    environment:
+      SITE_ADDRESS: ":80"
+
+  e2e:
+    image: mcr.microsoft.com/playwright:v1.63.0-noble
+    depends_on:
+      site:
+        condition: service_started
+    working_dir: /work
+    environment:
+      BASE_URL: http://site
+      CI: "1"
+    volumes:
+      - .:/work
+    command: >
+      sh -c "npm ci && npx playwright test"
