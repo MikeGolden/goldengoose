@@ -37,6 +37,8 @@ export const site = {
   role: 'Senior software engineer',
   tagline: 'Python backends, React on top, a decade of both in production.',
   location: 'Füssen, Germany',
+  /** IANA zone for the live clock in the hero */
+  timezone: 'Europe/Berlin',
   availability: 'Open to senior backend roles in Europe',
   avatar: '/img/avatar.jpg',
   email: 'msg0687@gmail.com',
@@ -158,10 +160,10 @@ export const site = {
     { label: 'experience', href: '#experience' },
     { label: 'stack', href: '#stack' },
     { label: 'work', href: '#work' },
-    { label: 'links', href: '#links' },
+    { label: 'contact', href: '#links' },
   ],
 } satisfies {
-  name: string; initials: string; role: string; tagline: string; location: string;
+  name: string; initials: string; role: string; tagline: string; location: string; timezone: string;
   availability: string; avatar: string; email: string; url: string; description: string;
   about: string[]; experience: Role[]; education: string;
   stack: { key: string; items: string[] }[];

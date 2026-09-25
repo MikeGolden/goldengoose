@@ -16,12 +16,12 @@ const href = external ? project.href : withBase(project.href);
   target={external ? '_blank' : undefined}
   rel={external ? 'noopener noreferrer' : undefined}
 >
-  <img class="card__thumb" src={withBase(project.image)} alt={project.imageAlt} loading="lazy" decoding="async" width="304" height="190" />
+  <div class="card__media">
+    <img class="card__thumb" src={withBase(project.image)} alt={project.imageAlt} loading="lazy" decoding="async" width="1280" height="800" />
+  </div>
   <div class="card__body">
-    <div class="card__head">
-      <h3 class="card__title">{project.title}<Icon name="arrow" /></h3>
-      <span class="card__year">{project.year}</span>
-    </div>
+    <span class="card__year">{project.year}</span>
+    <h3 class="card__title">{project.title}<Icon name="arrow" /></h3>
     <p class="card__desc">{project.description}</p>
   </div>
 </a>

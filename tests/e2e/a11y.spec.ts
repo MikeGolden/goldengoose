@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+// scan the settled page, not reveal animations caught mid-fade
+test.use({ reducedMotion: 'reduce' });
+
 test.beforeEach(async ({ page }) => {
   await page.goto('/');
 });
@@ -63,6 +66,6 @@ test('body text meets the contrast floor on the dark background', async ({ page 
     const s = getComputedStyle(document.documentElement);
     return { bg: s.getPropertyValue('--bg').trim(), fg: s.getPropertyValue('--fg').trim() };
   });
-  expect(bg).toBe('#09090a');
-  expect(fg).toBe('#ededec');
+  expect(bg).toBe('#0d0c0a');
+  expect(fg).toBe('#efe9dd');
 });

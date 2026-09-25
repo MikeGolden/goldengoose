@@ -13,7 +13,7 @@ test('title and description are set', async ({ page }) => {
 test('canonical, favicon and theme colour are present', async ({ page }) => {
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /^https?:\/\//);
   await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/favicon.svg');
-  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#09090a');
+  await expect(page.locator('meta[name="theme-color"]')).toHaveAttribute('content', '#0d0c0a');
 });
 
 test('open graph tags are complete', async ({ page }) => {

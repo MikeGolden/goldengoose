@@ -4,12 +4,14 @@ import { site } from '../data/site';
 import { withBase } from '../lib/paths';
 ---
 <Base title={`404 — ${site.name}`} description="Page not found.">
-  <section class="hero">
+  <section class="hero hero--short">
     <div class="shell">
-      <h1>404</h1>
-      <p class="hero__role">That page doesn't exist — or it did, and I moved it.</p>
-      <div class="hero__cta">
-        <a class="btn btn--primary" href={withBase('/')}>Back to the start</a>
+      <h1><span class="line"><span>404</span></span></h1>
+      <div class="hero__bottom">
+        <p class="hero__role"><em>That page doesn't exist — or it did, and I moved it.</em></p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href={withBase('/')}>Back to the start</a>
+        </div>
       </div>
     </div>
   </section>

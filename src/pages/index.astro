@@ -9,37 +9,47 @@ import { site } from '../data/site';
 import { withBase } from '../lib/paths';
 
 const cv = site.links.find((l) => l.icon === 'file');
+const [first, ...rest] = site.name.split(' ');
+const [lede, ...about] = site.about;
 ---
 <Base>
   <section class="hero">
     <div class="shell">
-      <img class="hero__avatar" src={withBase(site.avatar)} alt={site.name} width="68" height="68" />
-      <h1>{site.name}</h1>
-      <p class="hero__role"><strong>{site.role}</strong> — {site.tagline}</p>
-
-      <div class="hero__meta">
-        <span>{site.location}</span>
-        {site.availability && (
-          <span><i class="dot" aria-hidden="true"></i>{site.availability}</span>
-        )}
+      <div class="hero__top">
+        <img class="hero__avatar" src={withBase(site.avatar)} alt={site.name} width="56" height="56" />
+        <div class="hero__meta">
+          {site.availability && (
+            <span><i class="dot" aria-hidden="true"></i>{site.availability}</span>
+          )}
+          <span>{site.location}</span>
+        </div>
       </div>
 
-      <div class="hero__cta">
-        <a class="btn btn--primary" href={`mailto:${site.email}`}>
-          <Icon name="mail" />Get in touch
-        </a>
-        {cv && (
-          <a class="btn" href={cv.href.startsWith('http') ? cv.href : withBase(cv.href)}>
-            <Icon name="download" />Download CV
+      <h1>
+        <span class="line"><span>{first}</span></span>{' '}
+        <span class="line"><span>{rest.join(' ')}</span></span>
+      </h1>
+
+      <div class="hero__bottom">
+        <p class="hero__role"><strong>{site.role}.</strong> <em>{site.tagline}</em></p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href={`mailto:${site.email}`}>
+            <Icon name="mail" />Get in touch
           </a>
-        )}
+          {cv && (
+            <a class="btn" href={cv.href.startsWith('http') ? cv.href : withBase(cv.href)}>
+              <Icon name="download" />Download CV
+            </a>
+          )}
+        </div>
       </div>
     </div>
   </section>
 
   <Section id="about" label="About">
     <div class="prose">
-      {site.about.map((p) => <p>{p}</p>)}
+      <p class="prose__lede">{lede}</p>
+      {about.map((p) => <p>{p}</p>)}
     </div>
   </Section>
 
@@ -51,16 +61,16 @@ const cv = site.links.find((l) => l.icon === 'file');
   </Section>
 
   <Section id="stack" label="Stack">
-    <div class="stack-grid">
+    <dl class="stack-grid">
       {site.stack.map((row) => (
         <div class="stack-row">
-          <div class="stack-row__key">{row.key}</div>
-          <div class="tags">
+          <dt class="stack-row__key">{row.key}</dt>
+          <dd class="tags">
             {row.items.map((item) => <span class="tag">{item}</span>)}
-          </div>
+          </dd>
         </div>
       ))}
-    </div>
+    </dl>
   </Section>
 
   <Section id="work" label="Selected work">
@@ -69,7 +79,7 @@ const cv = site.links.find((l) => l.icon === 'file');
     </div>
   </Section>
 
-  <Section id="links" label="Elsewhere">
+  <Section id="links" label="Contact">
     <div class="links">
       {site.links.map((link) => <LinkCard link={link} />)}
     </div>

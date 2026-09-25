@@ -5,9 +5,11 @@ interface Props {
 }
 const { id, label } = Astro.props;
 ---
-<section id={id}>
-  <div class="shell">
+<section id={id} class="section">
+  <div class="shell section__grid">
     <h2 class="label">{label}</h2>
-    <slot />
+    <div class="section__body">
+      <slot />
+    </div>
   </div>
 </section>

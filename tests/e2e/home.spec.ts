@@ -94,7 +94,7 @@ test('every profile link is present with the right href', async ({ page }) => {
     await expect(el).toHaveAttribute('href', link.href);
     await expect(el.locator('.link__label')).toHaveText(link.label);
     await expect(el.locator('.link__handle')).toHaveText(link.handle);
-    await expect(el.locator('svg')).toBeVisible();
+    await expect(el.locator('.link__icon')).toBeVisible();
   }
 });
 

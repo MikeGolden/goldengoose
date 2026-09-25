@@ -17,8 +17,7 @@ const href = external || link.href.startsWith('mailto:') ? link.href : withBase(
   rel={external ? 'noopener noreferrer' : undefined}
 >
   <Icon name={link.icon} class="link__icon" />
-  <span class="link__text">
-    <span class="link__label">{link.label}</span>
-    <span class="link__handle">{link.handle}</span>
-  </span>
+  <span class="link__label">{link.label}</span>
+  <span class="link__handle">{link.handle}</span>
+  <Icon name="arrow" class="link__arrow" />
 </a>

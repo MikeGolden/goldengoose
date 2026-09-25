@@ -40,16 +40,19 @@ Anything in CAPS in that file is a placeholder. Before deploying, replace:
 | `public/img/avatar.svg` | placeholder — swap for a square photo (`avatar.jpg`, then update `site.avatar`) |
 | `public/img/project-N.svg` | placeholder thumbs — swap for real 16:10 screenshots |
 | `public/cv.pdf` | not there yet — drop your CV here, the hero button already points at it |
-| `public/favicon.svg` | gold `M` monogram |
+| `public/favicon.svg` | `MG` monogram |
 
 ## Design tokens
 
-`src/styles/global.css`, top of file. One accent (`--accent: #e3b55c`), one background ramp,
-one mono face for labels. Changing the accent recolors the whole page.
+`src/styles/global.css`, top of file. One accent (`--accent: #ff5b2e`) on a warm black.
+Type is Schibsted Grotesk plus Instrument Serif italic for labels and asides, both set in
+`astro.config.mjs` and self-hosted at build time. Scroll reveals, the parallax on project
+images and the progress line are CSS scroll-driven animations with no JS; browsers that
+lack support show the page static. Changing the accent recolors the whole page.
 
 ## Tests
 
-Playwright, three projects: `data` (no browser), `chromium`, `mobile` (Pixel 5). 73 tests.
+Playwright, three projects: `data` (no browser), `chromium`, `mobile` (Pixel 5). 78 tests.
 
 ```bash
 bunx playwright install chromium   # once
